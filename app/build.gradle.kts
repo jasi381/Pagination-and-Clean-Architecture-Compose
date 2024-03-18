@@ -69,20 +69,22 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
-    implementation ("androidx.paging:paging-compose:3.2.1")
+    implementation (libs.androidx.paging.runtime.ktx)
+    implementation (libs.androidx.paging.compose)
 
-    implementation ("androidx.compose.runtime:runtime-livedata:1.6.3")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //Compose-Runtime
+    implementation (libs.androidx.runtime.livedata)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+
+    //Retrofit
+    implementation (libs.retrofit)
 
     //moshi
-    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
-    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation(libs.moshi.kotlin)
+    implementation (libs.converter.moshi)
 
 //coil
-    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation(libs.coil.compose)
 
     //hilt
     implementation(libs.hiltAndroid)

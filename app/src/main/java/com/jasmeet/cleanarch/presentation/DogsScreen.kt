@@ -4,12 +4,12 @@ import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -43,10 +43,10 @@ fun DogsScreen(
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
 
-        items(response.itemCount) {
+        items(response.itemSnapshotList.items) {response->
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(response[it]?.url ?: R.drawable.ic_launcher_foreground)
+                    .data(response.url)
                     .crossfade(true)
                     .build(),
                 placeholder = painterResource(R.drawable.ic_launcher_foreground),
@@ -64,7 +64,7 @@ fun DogsScreen(
                     Log.d("TAG", "DogsScreen: Loading")
                     item {
                         Box(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
                             CircularProgressIndicator(

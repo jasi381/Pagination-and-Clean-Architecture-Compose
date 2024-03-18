@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -43,10 +42,10 @@ fun DogsScreen(
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
 
-        items(response.itemSnapshotList.items) {response->
+        items(response.itemCount) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(response.url)
+                    .data(response[it]?.url ?: R.drawable.ic_launcher_foreground)
                     .crossfade(true)
                     .build(),
                 placeholder = painterResource(R.drawable.ic_launcher_foreground),

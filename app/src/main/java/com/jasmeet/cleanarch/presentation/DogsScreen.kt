@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -77,14 +77,15 @@ fun DogsScreen(
                 loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
                     Log.d("TAG", "DogsScreen: Error")
                     item {
-                        Text(text = "Error")
+                        Box(modifier = Modifier
+                            .fillMaxSize()
+                            .statusBarsPadding()
+                            .navigationBarsPadding()){
+                            Text(text = "Error", modifier = Modifier.align(Alignment.Center) )
+                        }
                     }
-                }
-
-                loadState.refresh is LoadState.NotLoading -> {
                 }
             }
         }
     }
-
 }
